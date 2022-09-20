@@ -32,7 +32,26 @@ namespace CabTestProject
             {
                 Console.WriteLine(ex.Message);
             }
+        }
 
+
+        [Test]
+        public void GivenDistTimeAndRideStyle_Should_Return_TotalFare_For_Multiple_Rides()
+        {
+            try
+            {
+               
+                Invoice = new CabInvoiceGenerator();
+                Ride[] ride = { new Ride(5, 10, RideStyle.Normal), new Ride(10, 5, RideStyle.Premium) };
+                
+                double ActualFare = Invoice.CalculateFare(ride);
+               
+                Assert.AreEqual(ActualFare, 220);
+            }
+            catch (CabInvoiceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
