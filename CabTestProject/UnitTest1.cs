@@ -53,5 +53,25 @@ namespace CabTestProject
                 Console.WriteLine(ex.Message);
             }
         }
+        [Test]
+        public void Given_Dist_Time_RideStyle_Return_RideSummary_For_Multiple_Ride()
+        {
+            try
+            {
+                //Assembly
+                Invoice = new CabInvoiceGenerator();
+                Ride[] ride = { new Ride(5, 10, RideStyle.Normal), new Ride(10, 5, RideStyle.Premium) };
+                CabMonthlyReport expected = new CabMonthlyReport(220, 2);
+                //Act
+                object actual = Invoice.CalculateAverage(ride);
+                //Assert
+                Assert.AreEqual(actual, expected);
+            }
+            catch (CabInvoiceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
     }
 }

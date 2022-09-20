@@ -38,7 +38,16 @@ namespace CabInvoice
             }
             return(Totalfare);
         }
+        public CabMonthlyReport CalculateAverage(Ride[] ride)
+        {
+            double Totalfare = 0;
+            foreach (var item in ride)
+            {
+                Totalfare += CalculateFare(item);
+            }
+            return new CabMonthlyReport(Totalfare, ride.Length);
+        }
 
-       
+
     }
 }
